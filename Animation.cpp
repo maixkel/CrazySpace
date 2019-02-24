@@ -8,7 +8,7 @@
 
 #include "Animation.hpp"
 
-
+//I have absolutely no idea why I keep adding useless comments 
 
 Animation::Animation(sf::Vector2u dimensions, std::string& filename, int playerNumA):clock()
 {
