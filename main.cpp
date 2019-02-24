@@ -27,7 +27,7 @@
 #include "Collision.hpp"
 #include "Explosion.hpp"
 
-
+//Useless comment to be ingnored
 
 int main(int, char const**)
 {
