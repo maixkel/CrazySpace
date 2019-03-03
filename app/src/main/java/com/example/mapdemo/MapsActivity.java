@@ -1,14 +1,18 @@
 package com.example.mapdemo;
 
 import android.location.Location;
+import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -39,17 +43,49 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+
+                marker.remove();
+                return true;
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney2 = new LatLng(-34.003, 151.002);
-        mMap.addMarker(new MarkerOptions().position(sydney2).title("Marker in Sydney2"));
+        LatLng childLocation = new LatLng(45.4971648, -73.5788397);
+        mMap.addMarker(new MarkerOptions().position(childLocation).title("child's Location").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+
+
+        // Add a marker in Sydney and move the camera
+        LatLng itemLocation = new LatLng(45.4990562, -73.6105258);
+        mMap.addMarker(new MarkerOptions().position(itemLocation).title("Item 1's Location").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+
+
+
+
 
         float distance[] = new float[1];
         Location.distanceBetween(0.0, 0.0, 1.1, 1.1, distance);
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(itemLocation, 20));
     }
 }
